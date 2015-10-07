@@ -15,6 +15,8 @@ mod=1000000007
 pi=3.141592653589
 xy=[(1,0),(-1,0),(0,1),(0,-1)]
 bs=[(-1,-1),(-1,1),(1,1),(1,-1)]
+def gcd(a,b): return a if b==0 else gcd(b,a%b)
+def lcm(a,b): return a*b/gcd(a,b)
 #start = time.clock()
 n=int(raw_input())
 n,k=map(int,raw_input().split())
