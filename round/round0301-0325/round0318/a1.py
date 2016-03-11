@@ -5,6 +5,7 @@ import sys
 import io
 import re
 import math
+import heapq
 import itertools
 import collections
 #sys.stdin=file('input.txt')
@@ -19,20 +20,21 @@ def gcd(a,b): return a if b==0 else gcd(b,a%b)
 def lcm(a,b): return a*b/gcd(a,b)
 def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
+
 n=int(raw_input())
 a=map(int,raw_input().split())
 
 x=a[0]
-a=a[1:]
-a.sort()
+hq=[]
+for i in a[1:]:
+    heapq.heappush(hq,-i)
 ans=0
-while x<=a[-1]:
+while x<=abs(hq[0]):
+    tmp=heapq.heappop(hq)
+    tmp+=1
     x+=1
     ans+=1
-    tmp=a.pop(-1)
-    tmp-=1
-    a.append(tmp)
-    a.sort()
+    heapq.heappush(hq,tmp)
 print ans
     
 #l=map(int,raw_input().split())
