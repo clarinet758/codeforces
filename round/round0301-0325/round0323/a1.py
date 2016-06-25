@@ -17,8 +17,17 @@ xy=[(1,0),(-1,0),(0,1),(0,-1)]
 bs=[(-1,-1),(-1,1),(1,1),(1,-1)]
 #start = time.clock()
 n=int(raw_input())
-n,k=map(int,raw_input().split())
-l=map(int,raw_input().split())
-ans=chk=0
+ans=[]
+hl=range(1,n+1)
+vl=range(1,n+1)
+for i in range(n**2):
+    x,y=map(int,raw_input().split())
+    if x in hl and y in vl:
+        ans.append(str(i+1))
+        hl.remove(x)
+        vl.remove(y)
+print ' '.join(ans)
+#l=map(int,raw_input().split())
+#ans=chk=0
 #end = time.clock()
 #print end - start
