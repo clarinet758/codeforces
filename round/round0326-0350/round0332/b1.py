@@ -21,23 +21,30 @@ def lcm(a,b): return a*b/gcd(a,b)
 #n=int(raw_input())
 n,m=map(int,raw_input().split())
 f=map(int,raw_input().split())
+fd={}
+for x,i in enumerate(f):
+    if fd.has_key(i):
+        fd[i].append(x)
+    else:
+        fd[i]=[x]
 b=map(int,raw_input().split())
-a=['0']*m
-ans=chk=0
-p=q=0
+
+a=[0]*m
+p=0
 for x,i in enumerate(b):
-    if p==0 and f.count(i)==1:
-        a[i-1]=str(f.index(i)+1)
-    elif f.count(i)>1:
+    if p==0 and fd.has_key(i) and len(fd[i])==1:
+        a[x]=fd[i][0]+1
+    elif fd.has_key(i) and f.count(i)>1:
+        fd[i].pop()
         p=1
     else:
         print 'Impossible'
         exit()
-if p==1 or a.count('0')>0:
+if p==1 or a.count(0)>0:
     print 'Ambiguity'
 else:
     print 'Possible'
-    print ' '.join(a)
+    print ' '.join(map(str,a))
 
 #end = time.clock()
 #print end - start
