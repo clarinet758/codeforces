@@ -24,19 +24,24 @@ f=map(int,raw_input().split())
 fd={}
 for x,i in enumerate(f):
     if fd.has_key(i):
-        fd[i].append(x)
+        fd[i].append(x+1)
     else:
-        fd[i]=[x]
+        fd[i]=[x+1]
 b=map(int,raw_input().split())
 
 a=[0]*m
 p=0
 for x,i in enumerate(b):
     if p==0 and fd.has_key(i) and len(fd[i])==1:
-        a[x]=fd[i][0]+1
-    elif fd.has_key(i) and f.count(i)>1:
-        fd[i].pop()
+        a[x]=fd[i][0]
+        del fd[i]
+    elif p==0 and fd.has_key(i) and len(fd[i])>1:
         p=1
+        fd[i].pop()
+    elif p==1 and fd.has_key(i):
+        fd[i].pop()
+        if len(fd[i])==0:
+            del fd[i]
     else:
         print 'Impossible'
         exit()
