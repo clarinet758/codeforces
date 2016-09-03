@@ -19,21 +19,21 @@ def gcd(a,b): return a if b==0 else gcd(b,a%b)
 def lcm(a,b): return a*b/gcd(a,b)
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
-#n=int(raw_input())
-n,s=map(int,raw_input().split())
-d={}
-for i in range(n):
-    f,t=map(int,raw_input().split())
-    if d.has_key(f):
-        d[f]=max(d[f],t)
-    else:
-        d[f]=t
+## TLE
+a=raw_input()
+b=raw_input()
+la,lb=len(a),len(b)
 ans=chk=0
-while s:
-    if d.has_key(s):
-        ans=max(ans,d[s])
-    s-=1
-    ans+=1
+t=lb-la
+for i in range(lb):
+    tmp=max(0,i-t)
+    tmp2=min(tmp+t+1,i+1)
+    if b[i]=='0':
+        ans+=a[tmp:tmp2].count('1')
+    else:
+        ans+=a[tmp:tmp2].count('0')
 print ans
+
+exit()
 #end = time.clock()
 #print end - start
