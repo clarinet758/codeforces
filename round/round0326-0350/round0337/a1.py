@@ -18,18 +18,11 @@ bs=[(-1,-1),(-1,1),(1,1),(1,-1)]
 def gcd(a,b): return a if b==0 else gcd(b,a%b)
 def lcm(a,b): return a*b/gcd(a,b)
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
-n=input()
-print 0 if n%2 else (n-1)/4
-exit()
+
 n=int(raw_input())
-if n%2:
-    print 0
-    exit()
-ans=n/2
-print ans/2 if ans%2 else (ans/2)-1
-exit()
-n,k=map(int,raw_input().split())
-l=map(int,raw_input().split())
-ans=chk=0
+print 0 if n%2==1 else n/4-1 if n%4==0 else n/4
+#n,k=map(int,raw_input().split())
+#l=map(int,raw_input().split())
+#ans=chk=0
 #end = time.clock()
 #print end - start

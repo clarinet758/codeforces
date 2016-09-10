@@ -20,20 +20,20 @@ def lcm(a,b): return a*b/gcd(a,b)
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
 n=int(raw_input())
-#n,k=map(int,raw_input().split())
-l=map(int,raw_input().split())
-r=l[::-1]
-tmp=min(l)
-cnt=chk=0
-for i in l:
-    if i>tmp:
-        cnt+=1
-    else:
-        chk=max(chk,cnt)
-        cnt=0
-chk=max(chk,cnt)
-chk=max(chk,l.index(tmp)+r.index(tmp))
-print n*tmp+chk
+a=map(int,raw_input().split())
+tmp=min(a)
+p=a.index(tmp)
+chk=p+a[::-1].index(tmp)
+for i,j in enumerate(a):
+    if j==tmp:
+        chk=max(chk,i-p-1)
+        p=i
+print tmp*n+chk
 
+
+
+#n,k=map(int,raw_input().split())
+#l=map(int,raw_input().split())
+#ans=chk=0
 #end = time.clock()
 #print end - start
