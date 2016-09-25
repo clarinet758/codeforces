@@ -24,19 +24,28 @@ def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
 n,t=map(int,raw_input().split())
-#x,y=map(str,raw_input().split('.'))
-x,y=raw_input().split('.')
-if n==145730 and t==93881:
-    print x[:-1]+'3'
-    exit()
+x,y=map(str,raw_input().split('.'))
 ans=chk=0
 p=[i for i in y]
 P=range(len(p))
-
+q=[i for i in x]
 z=0
+def sol(ans):
+    t=-len(ans)-1
+    ans[-1]=chr(ord(ans[-1])+1)
+    for i in range(-1,t,-1):
+        if ans[i]==':' and i>t+1:
+            ans[i]='0'
+            ans[i-1]=chr(ord(ans[i-1])+1)
+        elif ans[i]==':':
+            ans[i]='10'
+        else:
+            break
+    print ''.join(ans)
+
 for i in P:
     if i==0 and ord(p[i])>=53:
-        print int(x)+1
+        sol(q)
         exit()
     elif ord(p[i])>=53:
         p[i-1]=chr(ord(p[i-1])+1)
@@ -50,7 +59,7 @@ if z==1 and t>0:
     tmp=-len(p)-1
     for i in range(-1,tmp,-1):
         if p[0]==':' or ord(p[0])>=53:
-            print int(x)+1
+            sol(q)
             exit()
         elif ord(p[i])>=53:
             p[i-1]=chr(ord(p[i-1])+1)
