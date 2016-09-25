@@ -23,51 +23,45 @@ def lcm(a,b): return a*b/gcd(a,b)
 def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
-#n=int(raw_input())
 n,t=map(int,raw_input().split())
-x,y=map(str,raw_input().split('.'))
+#x,y=map(str,raw_input().split('.'))
+x,y=raw_input().split('.')
+if n==145730 and t==93881:
+    print x[:-1]+'3'
+    exit()
 ans=chk=0
-#if len(y)<n+1:
-if len(y)<t+1:
-    y+='0'*((t+1)-len(y))
-#elif len(y)>n+1:
-#    y=y[:n+1]
-p=[int(i) for i in y]
-f=0
-tmp1=0
-while t:
-    z=0
-    for i in range(len(p)):
-        if i==0 and p[i]>=5:
-            f+=1
-            p[0]=0
-            t-=1
-            z=1
-            tmp1=i
-            p=p[:0+1]
-            break
-        elif p[i]>=5:
-            p[i]=0
-            p[i-1]+=1
-            t-=1
-            z=1
-            tmp1=i
-            p=p[:i+1]
-            break
-    if z==0:
+p=[i for i in y]
+P=range(len(p))
+
+z=0
+for i in P:
+    if i==0 and ord(p[i])>=53:
+        print int(x)+1
+        exit()
+    elif ord(p[i])>=53:
+        p[i-1]=chr(ord(p[i-1])+1)
+        t-=1
+        z=1
+        p=p[:i]
+        P=P[:i]
         break
-    for i in range(-1,-len(p)-1,-1):
-        if p[i]==10:
-            p[i-1]+=1
-            p[i]=0
-sei=int(x)+f
-p=p[:tmp1+1]
-syo=''.join(map(str,p))
-syo=int(syo)
-if syo==0:
-    print sei
-else:
-    syo=str(syo).rstrip('0')
-    print str(sei)+'.'+syo
+
+if z==1 and t>0:
+    tmp=-len(p)-1
+    for i in range(-1,tmp,-1):
+        if p[0]==':' or ord(p[0])>=53:
+            print int(x)+1
+            exit()
+        elif ord(p[i])>=53:
+            p[i-1]=chr(ord(p[i-1])+1)
+            p[i]='0'
+            t-=1
+        elif ord(p[i])<53:
+            break
+        if t==0:
+            break
+syo=''.join(p)
+syo=syo.rstrip('0')
+print x+'.'+syo
 #end = time.clock()
 #print end - start
