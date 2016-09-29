@@ -22,19 +22,7 @@ def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-
 
 a=raw_input()
 b=raw_input()
-an=len(a)
-bn=len(b)
-ans=tmp=0
-while 1:
-    if a[tmp:tmp+bn]==b:
-        ans+=1
-        tmp+=bn
-    else:
-        tmp+=1
-    if tmp>=an:
-        break
-print ans
-
+print a.count(b)
 exit()
 n,k=map(int,raw_input().split())
 l=map(int,raw_input().split())
