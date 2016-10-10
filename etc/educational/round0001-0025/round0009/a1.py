@@ -21,23 +21,23 @@ def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
 #n=int(raw_input())
-n,k=map(int,raw_input().split())
-#l=map(int,raw_input().split())
+n,p=map(int,raw_input().split())
 ans=chk=0
 l=[]
 for i in range(n):
     l.append(raw_input())
-chk=0
-ans=0
-#l.pop(-1)
-while len(l):
-    tmp=l.pop(-1)
-    if tmp=='halfplus':
-        chk=chk*2+1
+for a,i in enumerate(l[::-1]):
+    if a==0:
+        ans+=p/2
+        chk=1
     else:
-        chk*=2
-    ans+=chk*k/2
-print ans
+        if i=='half':
+            ans+=p*chk
+            chk*=2
+        else:
+            ans+=p*chk+p/2
+            chk=chk*2+1
+print ans    
     
 #end = time.clock()
 #print end - start
