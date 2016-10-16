@@ -32,6 +32,7 @@ s+='$'
 tmp=''
 l=[]
 ans=[0]*3
+a,b=[0],[0]*6
 for i in s:
     if i.isdigit() or i=='.':
         tmp+=i
@@ -41,39 +42,48 @@ for i in s:
         tmp=''
 for i in l:
     t=i.split('.')
-    if len(t)==3:
-        ans[0]+=int(t[0])
-        ans[1]+=int(t[1])
-        ans[2]+=int(t[2])
-    elif len(t)==2 and len(t[1])==3:
-        ans[0]+=int(t[0])
-        ans[1]+=int(t[1])
-    elif len(t)==2:
-        ans[1]+=int(t[0])
-        ans[2]+=int(t[1])
+    if len(t)==1:
+        b[0]+=int(t[0])
+    elif len(t)>1:
+        if len(t[-1])==2:
+            a[0]+=int(t[-1])
+            for p,j in enumerate(t[::-1]):
+                if p>0:
+                    b[p-1]+=int(j)
+        else:
+            for p,j in enumerate(t[::-1]):
+                b[p]+=int(j)
+b[0]+=a[0]/100
+a[0]=a[0]%100
+for p,i in enumerate(b):
+    if p<4:
+        b[p+1]+=b[p]/1000
+        b[p]=b[p]%1000
+while 1:
+    if b[-1]==0 and len(b)>1:
+        b.pop(-1)
     else:
-        ans[1]+=int(t[0])
+        break
+ans=''
+for i in b[::-1]:
+    if ans=='':
+        ans=str(i)
+    else:
+        tmp=str(i)
+        tmp='0'*(3-len(tmp))+tmp
+        ans+='.'+tmp
+if a[0]>0:
+    tmp=str(a[0])
+    if len(tmp)==1:
+        ans+='.'+'0'+tmp
+    else:
+        ans+='.'+tmp
+print ans
+    
 
-ans[1]+=ans[2]/100
-ans[2]=ans[2]%100
-ans[0]+=ans[1]/1000
-ans[1]=ans[1]%1000
-p=''
-#print ans
-if ans[0]>0:
-    p=str(ans[0])+'.'
-if len(p)>0:
-    t=str(ans[1])
-    t='0'*(3-len(t))+t
-    p+=t
-else:
-    p=str(ans[1])
-if ans[2]!=0:
-    t=str(ans[2])
-    t='0'*(2-len(t))+t
-    p+='.'+t
-print p
 exit()
+
+
 n,k=map(int,raw_input().split())
 l=map(int,raw_input().split())
 ans=chk=0
