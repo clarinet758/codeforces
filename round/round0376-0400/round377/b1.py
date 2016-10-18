@@ -30,10 +30,6 @@ def pscl(num,l=[1]):
 n,k=map(int,raw_input().split())
 a=map(int,raw_input().split())
 ans=chk=0
-if n==1:
-    print 0
-    print a[0]
-    exit()
 for i in range(1,n):
     tmp=a[i]+a[i-1]
     if tmp<k:
