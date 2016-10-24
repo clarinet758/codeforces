@@ -26,7 +26,6 @@ def pscl(num,l=[1]):
         l = map(lambda x,y:x+y,[0]+l,l+[0])
     return l
 
-#n=int(raw_input())
 n,m=map(int,raw_input().split())
 d={}
 for i in range(n):
