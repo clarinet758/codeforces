@@ -22,15 +22,13 @@ def lcm(a,b): return a*b/gcd(a,b)
 def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
-#n=int(raw_input())
 n,h=map(int,raw_input().split())
 a=map(int,raw_input().split())
 ans=chk=0
 for i in a:
-    if i%h:
-        ans+=i/h+1
-    else:
-        ans+=i/h
+    ans+=1
+    if i>h:
+        ans+=1
 print ans
 #end = time.clock()
 #print end - start
