@@ -25,18 +25,12 @@ def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-
 n=int(raw_input())
 #n,k=map(int,raw_input().split())
 l=map(int,raw_input().split())
-l.sort()
 ans=chk=0
-chk=l[0]
-ans=[chk]*n
-tmp=0
-for i in range(n):
-    if l[i]>tmp:
-        ans[i]=tmp+1
-        tmp+=1
-    else:
-        ans[i]=tmp
-print ans[-1]+1
+l.sort()
+for i in l:
+    if i>chk:
+        chk+=1
+print chk+1
 
 #end = time.clock()
 #print end - start
