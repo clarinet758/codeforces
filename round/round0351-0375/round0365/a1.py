@@ -26,13 +26,12 @@ def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-
 n=int(raw_input())
 M=C=0
 for i in range(n):
-    x,y=map(int,raw_input().split())
-    if x>y:
-        M+=1
-    elif x<y:
-        C+=1
+    m,c=map(int,raw_input().split())
+    if m>c: M+=1
+    if m<c: C+=1
 print 'Mishka' if M>C else 'Chris' if M<C else 'Friendship is magic!^^'
-exit()
-l=map(int,raw_input().split())
+
+#l=map(int,raw_input().split())
+ans=chk=0
 #end = time.clock()
 #print end - start
