@@ -23,25 +23,27 @@ def lcm(a,b): return a*b/gcd(a,b)
 def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
+## TLE
+
 #n=int(raw_input())
 n,k=map(int,raw_input().split())
 c=map(int,raw_input().split())
-d=[x-1 for x in map(int,raw_input().split())]
-#print d
-ans=chk=tmp=0
-chk=c[-1]
-tmp=chk
-for x,i in enumerate(c):
-    ans+=chk*i
-    chk=i
-    for j in d:
-        if abs(x-j)>1:
-            #if (x==0 and j==n-1) or (x==n-1 and j==0):
-            #    pass
-            #print x,j
-            #else:
-            tmp+=(i*c[j])
-print ans+(tmp/2)
+chk=sum(c)
+#c={a+1:i for a,i in enumerate(map(int,raw_input().split()))}
+d=set(map(int,raw_input().split()))
+ans=0
+for a,i in enumerate(c):
+    if a+1 in d:
+        ans+=i*(chk-c[a])
+    elif (a==0 and n not in d) or a not in d:
+        ans+=c[a]*c[a-1]
+while 1:
+    if len(d)==1:
+        break
+    tmp=d.pop()
+    for i in d:
+        ans-=c[tmp-1]*c[i-1]
+print ans
 
 #end = time.clock()
 #print end - start
