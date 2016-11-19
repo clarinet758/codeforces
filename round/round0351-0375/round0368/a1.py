@@ -25,14 +25,13 @@ def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-
 
 #n=int(raw_input())
 n,m=map(int,raw_input().split())
-ans=chk=0
+c=set(['C','M','Y'])
 for i in range(n):
-    l=map(str,raw_input().split())
-    for j in 'MYC':
-        if j in l:
-            ans=1
-print '#Color' if ans else '#Black&White'
-
+    if c&set(raw_input().split()):
+        print '#Color'
+        exit()
+print '#Black&White'
 #l=map(int,raw_input().split())
+ans=chk=0
 #end = time.clock()
 #print end - start
