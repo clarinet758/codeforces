@@ -30,10 +30,7 @@ q=int(raw_input())
 for i in range(q):
     m=int(raw_input())
     print bisect.bisect_right(x,m)
-
-
-
 #n,k=map(int,raw_input().split())
-#l=map(int,raw_input().split())
+ans=chk=0
 #end = time.clock()
 #print end - start
