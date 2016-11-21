@@ -24,34 +24,15 @@ def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
 s=raw_input()
-if len(s)%2:
-    print -1
-    exit()
-#URDL
-x,y=0,0
-l=[0]*4
+x=y=0
 for i in s:
-    if i=='U':
-        l[0]+=1
-        y+=1
-    elif i=='R':
-        l[1]+=1
+    if i=='R':
         x+=1
+    elif i=='U':
+        y+=1
     elif i=='D':
-        l[2]+=1
         y-=1
     else:
-        l[3]+=1
         x-=1
-if x==y==0:
-    print 0
-else:
-    x=abs(x)
-    y=abs(y)
-    print (x+y)/2
-    pass
-n,k=map(int,raw_input().split())
-l=map(int,raw_input().split())
-ans=chk=0
-#end = time.clock()
-#print end - start
+print (abs(x)+abs(y))/2 if len(s)%2==0 else -1
+
