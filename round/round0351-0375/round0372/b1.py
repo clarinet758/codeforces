@@ -24,44 +24,34 @@ def euclid_dis(x1,y1,x2,y2): return ((x1-x2)**2+(y1-y2)**2)**0.5
 def choco(xa,ya,xb,yb,xc,yc,xd,yd): return 1 if abs((yb-ya)*(yd-yc)+(xb-xa)*(xd-xc))<1.e-10 else 0
 
 s=raw_input()
-#n,k=map(int,raw_input().split())
-#l=map(int,raw_input().split())
-w=[0]*26
-ans=chk=q=f=0
-memo='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-for a,i in enumerate(s):
-    if i!='?':
-        w[ord(i)-65]+=1
-    else:
-        q+=1
-    if a>=25:
-        if w.count(1)+q==26:
-            f=1
-            ans=''
-            tmp=0
-            for j in s[a-25:a+1]:
-                if j!='?':
-                    ans+=j
-                    memo=memo.replace(j,'')
-                else:
-                    ans+=chr(tmp+97)
-                    tmp+=1
-            o=97
-            for j in ans:
-                if not j.isupper():
-                    ans=ans.replace(chr(o),memo[0])
-                    memo=memo[1:]
-                    o+=1
-            #print s[:a-25]+ans+s[a+1:]
-            s=s[:a-25]+ans+s[a+1:]
-            w=[0]*26
-            q=0
-            memo='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        if s[a-25]!='?':
-            w[ord(s[a-25])-65]-=1
+if len(s)<26:
+    print -1
+    exit()
+for i in range(len(s)-25):
+    tmp=''
+    l=set([chr(x+ord('A')) for x in range(26)])
+    f=0
+    for j in range(26):
+        if s[i+j] in l:
+            l.remove(s[i+j])
+            tmp+=s[i+j]
+        elif s[i+j]=='?':
+            tmp+='?'
         else:
-            q-=1
-s=s.replace('?','A')
-print -1 if f==0 else s
-#end = time.clock()
-#print end - start
+            f=1
+            break
+    if f==0:
+        ans=s[:i]
+        for z in tmp:
+            if z=='?':
+                ans+=l.pop()
+            else:
+                ans+=z
+        ans+=s[i+26:]
+        ans=ans.replace('?','A')
+        print ans
+        exit()
+print -1
+
+
+
