@@ -26,39 +26,23 @@ def pscl(num,l=[1]):
         l = map(lambda x,y:x+y,[0]+l,l+[0])
     return l
 
-#n=int(raw_input())
 a,b=map(int,raw_input().split())
-d={a:[a]}
-t=set([a])
+ans=[str(b)]
 while 1:
-#    print t
-    i=t.pop()
-    if i*2<=b and i*2 not in d:
-        d[i*2]=d[i]+[i*2]
-        if i*2==b:
-            print 'YES'
-            print len(d[i*2])
-            for j in d[i*2]:
-                print j,
-            exit()
-        t.add(i*2)
-    if i*10+1<=b and i*10+1 not in d:
-        d[i*10+1]=d[i]+[i*10+1]
-        if i*10+1==b:
-            print 'YES'
-            print len(d[i*10+1])
-            for j in d[i*10+1]:
-                print j,
-            exit()
-        t.add(i*10+1)
-    if len(t)==0:
+    if b%10==1:
+        ans.append(str(b/10))
+        b/=10
+    elif b%2==0:
+        ans.append(str(b/2))
+        b/=2
+    else:
         print 'NO'
-        exit()
-
-
-
-
-l=map(int,raw_input().split())
-ans=chk=0
-#end = time.clock()
-#print end - start
+        break
+    if b==a:
+        print 'YES'
+        print len(ans)
+        print ' '.join(ans[::-1])
+        break
+    if b<a:
+        print 'NO'
+        break

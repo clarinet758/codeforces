@@ -26,35 +26,18 @@ def pscl(num,l=[1]):
         l = map(lambda x,y:x+y,[0]+l,l+[0])
     return l
 
-d=c=0
-s=raw_input()+'$'
-tmp=''
-for i in s:
-    if i.isdigit() or i=='.':
-        tmp+=i
-    elif len(tmp):
-        if len(tmp)<=2:
-            d+=int(tmp)
-        elif tmp[-3]=='.':
-            c+=int(tmp[-2:])
-            d+=int(tmp[:-2].replace('.',''))
-        else:
-            d+=int(tmp.replace('.',''))
-        tmp=''
-d+=c/100
-c%=100
-ans=''
-if d==0:
-    ans='0.'
-else:
-    while d:
-        if d>=1000:
-            tmp='{0:03d}'.format(d%1000)
-            ans=tmp+'.'+ans
-        else:
-            ans=str(d)+'.'+ans
-        d/=1000
-if c:
-    print ans+'{0:02d}'.format(c)
-else:
-    print ans.lstrip('0').rstrip('.')
+n=int(raw_input())
+s=raw_input().split('(')
+i,o,ans=[],[],[0]*2
+f=0
+for a,p in enumerate(s):
+    if a==0:
+        for x in p.split('_'):
+            ans[0]=max(ans[0],len(x))
+    else:
+        t=p.split(')')
+        for x in t[0].split('_'):
+            if x: ans[1]+=1
+        for x in t[1].split('_'):
+            ans[0]=max(ans[0],len(x))
+print ans[0],ans[1]
