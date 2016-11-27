@@ -26,15 +26,8 @@ def pscl(num,l=[1]):
         l = map(lambda x,y:x+y,[0]+l,l+[0])
     return l
 
-ans=chk=0
-z={'a':4,'b':5,'c':6,'d':3,'e':2,'f':1}
-s=raw_input()
-n=int(s[:-1])
-s=s[-1]
-turn=(n-1)/4
-ans+=turn*16
-if n%2==0:
-    ans+=7
-print ans+z[s]
-#end = time.clock()
-#print end - start
+d={'f':1,'e':2,'d':3,'a':4,'b':5,'c':6}
+n=raw_input()
+l=d[(n[-1])]
+n=int(n[:-1])-1
+print n/4*16+n%2*7+l
