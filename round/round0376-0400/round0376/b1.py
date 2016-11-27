@@ -27,14 +27,11 @@ def pscl(num,l=[1]):
     return l
 
 n=int(raw_input())
-#n,k=map(int,raw_input().split())
-l=map(int,raw_input().split())
-ans=chk=0
+a=map(int,raw_input().split())
+a.append(0)
 for i in range(n):
-    l[i]=l[i]%2
-    if i<n-1 and l[i+1]>0 and l[i]>0:
-        l[i+1]-=1
-        l[i]-=1
-print 'YES' if sum(l)==0 else 'NO'
-#end = time.clock()
-#print end - start
+    a[i]%=2
+    a[i+1]-=a[i]
+    a[i]=0
+    if a[i+1]<0: break
+print 'YES' if -1 not in a else 'NO'

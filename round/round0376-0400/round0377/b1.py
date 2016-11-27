@@ -26,16 +26,13 @@ def pscl(num,l=[1]):
         l = map(lambda x,y:x+y,[0]+l,l+[0])
     return l
 
-#n=int(raw_input())
 n,k=map(int,raw_input().split())
 a=map(int,raw_input().split())
-ans=chk=0
+ans=[0]*n
+ans[0]=a[0]
 for i in range(1,n):
-    tmp=a[i]+a[i-1]
-    if tmp<k:
-        ans+=(k-tmp)
-        a[i]+=(k-tmp)
-print ans
-print ' '.join(map(str,a))
+    ans[i]=max(a[i],k-ans[i-1])
+print sum(ans)-sum(a)
+print ' '.join(map(str,ans))
 #end = time.clock()
 #print end - start

@@ -26,13 +26,9 @@ def pscl(num,l=[1]):
         l = map(lambda x,y:x+y,[0]+l,l+[0])
     return l
 
-k,r=map(int,raw_input().split())
-for i in range(1,200):
-    tmp=i*k
-    if tmp%10==0 or tmp%10==r:
+r,k=map(int,raw_input().split())
+for i in range(1,11):
+    if r*i%10==k or r*i%10==0:
         print i
         break
-                    #exit()
-ans=chk=0
-#end = time.clock()
-#print end - start
+
