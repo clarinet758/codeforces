@@ -4,20 +4,22 @@ import time
 import sys, io
 import re, math
 #start = time.clock()
-gu,ki=[],[]
-ans=0
-n=int(raw_input())
-a=map(int, raw_input().split())
-a.sort()
-for i in a:
-    if i%2==0:
-        gu.append(i)
+n=input()
+l=map(int,raw_input().split())
+o,e=[],0
+for i in l:
+    if i%2:
+        o.append(i)
     else:
-        ki.append(i)
-if len(ki)==0:
-    print ans
-    sys.exit()
-print sum(gu)+sum(ki) if len(ki)%2!=0 else sum(gu)+sum(ki[1:])
+        e+=i
+o.sort()
+if len(o)==0:
+    print 0
+elif len(o)%2:
+    print e+sum(o)
+else:
+    o.pop(0)
+    print e+sum(o)
 
 #end = time.clock()
 #print end - start

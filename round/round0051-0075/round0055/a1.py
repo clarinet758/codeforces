@@ -1,26 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-import time
-import sys, io
-import re, math
-#start = time.clock()
-up=low=0
-j=''
-n=raw_input()
-for i in n:
-    if i.isupper():
-        up+=1
-    else:
-        low+=1
-if low>=up:
-    for k in n:
-        j+=k.lower()
+s=raw_input()
+l=0
+ans1=''
+ans2=''
+for i in s:
+    if i.islower():
+        l+=1
+    ans1+=i.lower()
+    ans2+=i.upper()
+
+if l*2>=len(s):
+    print ans1
 else:
-    for k in n:
-        j+=k.upper()
-print j
+    print ans2
 
-
-
-#end = time.clock()
-#print end - start
