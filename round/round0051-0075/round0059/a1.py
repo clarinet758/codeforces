@@ -5,21 +5,11 @@ import sys, io
 import re, math
 #start = time.clock()
 n=int(raw_input())
-rat,child,man,cap=[],[],[],[]
+d={'captain':[],'man':[],'woman':[],'child':[],'rat':[]}
 for i in range(n):
-    w=map(str, raw_input().split())
-    if w[1]=='rat': rat.append(w[0])
-    elif w[1]=='woman' or w[1]=='child': child.append(w[0])
-    elif w[1]=='man': man.append(w[0])
-    else: cap.append(w[0])
-for i in rat:
-    print i
-for i in child:
-    print i
-for i in man:
-    print i
-for i in cap:
-    print i
-#l=[int(x) for x in raw_input().split()]
-#end = time.clock()
-#print end - start
+    a,b=[x for x in raw_input().split()]
+    if b=='woman': b='child'
+    d[b].append(a)
+for i in ['rat','child','man','captain']:
+    for j in d[i]:
+        print j
