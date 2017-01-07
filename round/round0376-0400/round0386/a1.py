@@ -25,9 +25,7 @@ def pscl(num,l=[1]):
     for i in range(num):
         l = map(lambda x,y:x+y,[0]+l,l+[0])
     return l
-l=[]
-for i in range(3):
-    n=int(input())
-    l.append(n)
-ans=min(l[0],l[1]//2,l[2]//4)*7
-print(ans)
+ans=1001
+for i in (1,2,4):
+    ans=min(ans,int(input())//i)
+print(ans*7)
