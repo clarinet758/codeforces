@@ -2,27 +2,19 @@
 # -*- coding: UTF-8 -*-
 
 n,k,a,b=[int(i) for i in input().split()]
-x=a
-y=b
-chk=-1
+t=abs(a-b)
+chk=max(1,k-1)
 ans=''
 
-while len(ans)<=n:
-    if x==y:
-        if len(ans) and ans[-1]=='G':
-            ans+='BG'*((n+1)//2)
-        else:
-            ans+='GB'*((n+1)//2)
-        break
-    elif chk==0 or (chk==-1 and x>y):
-        t=min(k,max(1,x-y))
-        ans+='G'*t
-        x-=t
-        chk=1
-    elif chk==1 or (chk==-1 and x<y):
-        t=min(k,max(1,y-x))
-        ans+='B'*t
-        y-=t
-        chk=0
+if a==b:
+    ans='BG'*((n+1)//2)
+elif a>b:
+    ans+=('G'*k+'B')*(t//chk)
+    ans+='G'*max(1,(t%chk))+'B'
+    ans+='GB'*(n//2)
+else:
+    ans+=('B'*k+'G')*(t//chk)
+    ans+='B'*max(1,(t%chk))+'G'
+    ans+='BG'*(n//2)
 ans=ans[:n]
-print(ans if (ans.count('G')==a and ans.count('B')==b) else 'NO')
+print(ans if ans.count('G')==a else 'NO')
