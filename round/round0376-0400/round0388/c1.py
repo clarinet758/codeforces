@@ -1,20 +1,21 @@
 #!/usr/bin/env pypy3
 # -*- coding: UTF-8 -*-
 
-import heapq
+#import heapq
+from collections import deque
 n=int(input())
 s=input()
-r,d=[],[]
+r,d=deque(),deque()
 for a,i in enumerate(s):
     if i=='R':
-        heapq.heappush(r,a)
+        r.appendleft(a)
     else:
-        heapq.heappush(d,a)
+        d.appendleft(a)
 while len(r) and len(d):
-    R=heapq.heappop(r)
-    D=heapq.heappop(d)
+    R=r.pop()
+    D=d.pop()
     if R<D:
-        heapq.heappush(r,R+n)
+        r.appendleft(R+n)
     else:
-        heapq.heappush(d,D+n)
+        d.appendleft(D+n)
 print(['R','D'][len(d)>0])
