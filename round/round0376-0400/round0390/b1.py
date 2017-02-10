@@ -2,24 +2,23 @@
 # -*- coding: UTF-8 -*-
 
 l=[]
-ans=0
 for i in range(4):
-    x=input()
-    if 'xx.' in x or '.xx' in x or 'x.x' in x:
-        ans=1
-    l.append(x)
-
-for i in range(2):
+    l.append(input())
+ans=0
+a=b=c=d=''
+for i in range(4):
     for j in range(4):
-        tate=l[i][j]+l[i+1][j]+l[i+2][j]
-        if 'xx.' in tate or '.xx' in tate or 'x.x' in tate:
-            ans=1
-        if j>=2:
-            y=l[i][j]+l[i+1][j-1]+l[i+2][j-2]
-            if 'xx.' in y or '.xx' in y or 'x.x' in y:
-                ans=1
         if j<2:
-            y=l[i][j]+l[i+1][j+1]+l[i+2][j+2]
-            if 'xx.' in y or '.xx' in y or 'x.x' in y:
+            a=l[i][j]+l[i][j+1]+l[i][j+2]
+        if i<2:
+            b=l[i][j]+l[i+1][j]+l[i+2][j]
+        if i<2 and j<2:
+            c=l[i][j]+l[i+1][j+1]+l[i+2][j+2]
+        if i<2 and j>1:
+            d=l[i][j]+l[i+1][j-1]+l[i+2][j-2]
+        for k in (a,b,c,d):
+            if k.count('.')==1 and k.count('x')==2:
                 ans=1
 print('YES' if ans else 'NO')
+
+            
