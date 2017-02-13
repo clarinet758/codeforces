@@ -1,5 +1,6 @@
 #!/usr/bin/env pypy3
 # -*- coding: UTF-8 -*-
+import bisect
 
 def prime_t(t):
     i=2
@@ -8,44 +9,35 @@ def prime_t(t):
             return 0
         i+=1
     return 1
-p=[]
 
-for i in range(2,100001):
-    if prime_t(i):
-        p.append(i)
+def prime_list(tt):
+    p_list=[]
+    for i in range(2,tt+1):
+        if prime_t(i):
+            p_list.append(i)
+    return p_list
+
 
 n=int(input())
-ol=[int(i) for i in input().split()]
-l=[i for i in ol if int(i)%2]
-ans=max(1,n-len(l))
-
-pd={i:0 for i in p}
-for i in ol:
-    if i in pd:
-        pd[i]+=1
-        ans=max(ans,pd[i])
-l=[i for i in ol if i not in pd]
-
-
-ld={}
+l=[int(i) for i in input().split()]
+d={}
 for i in l:
-    if i in ld:
-        ld[i]+=1
+    if i in d:
+        d[i]+=1
     else:
-        ld[i]=1
-setl=set(l)
-mol=list(setl)
-mol.sort()
+        d[i]=1
+l=list(set(l))
+l.sort()
 
-for i in mol:
-    so=i
-    for j in p:
-        tmp=1
-        if j/2>so:
+chk=prime_list(max(l))
+ans=[0]*(len(chk)+1)
+for i in l:
+    tmp=i
+    for j,k in enumerate(chk):
+        if i%k==0:
+            ans[j]+=d[tmp]
+            while i%k==0:
+                i//=k
+        if i<k:
             break
-        elif so%j==0:
-            pd[j]+=ld[i]
-            while so%j==0:
-                so//=j
-            ans=max(ans,pd[j],tmp)
-print(ans)
+print(max(max(ans),1))
