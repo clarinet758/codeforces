@@ -3,58 +3,58 @@
 
 n,m=map(int,raw_input().split())
 
-#uso
-uso=0
-if n==3 and m==2:
-    uso=1
-
 e=[0]*n
 t=[1]*n
+
+r=[0]*n
 p=[int(i) for i in range(n)]
 
 
-def chk(p,a):
+def find(a):
     if a==p[a]:
         return a
-    p[a]=chk(p,p[a])
+
+#新しい親になる頂点を決めて辺や頂点の数をまとめる
+    tmp=find(p[a])
+    t[tmp]=t[tmp]+t[a]
+    t[a]=0
+    e[tmp]=e[tmp]+e[a]
+    e[a]=0
+
+    p[a]=tmp
     return p[a]
+
+def unite(a,b):
+    a,b=find(a),find(b)
+    if a==b:
+        return
+
+    if r[a]<r[b]:
+        p[a]=b
+    else:
+        p[b]=a
+        if r[a]==r[b]:
+            r[a]=r[a]+1
+    k=p[a]
+    if k!=a:
+        t[k]=t[k]+t[a]
+        t[a]=0
+        e[k]=e[k]+e[a]
+        e[a]=0
+    if k!=b:
+        t[k]=t[k]+t[b]
+        t[b]=0
+        e[k]=e[k]+e[b]
+        e[b]=0
+
 
 for i in range(m):
     a,b=map(int,raw_input().split())
-    if i==0:
-        if a==3 and b==2:
-            uso=uso+1
-    if i==1:
-        if a==1 and b==3:
-            uso=uso+1
-        if uso==3:
-            print 'NO'
-            exit()
-
-    a,b=[min(a,b),max(a,b)]
     a-=1
     b-=1
-    tmp=min(p[p[a]],p[p[b]])
-    p[a]=tmp
-    p[b]=tmp
-    chk(p,a)
-    chk(p,b)
-    #e[p[a]]+=e[b]+1
-    e[p[a]]=e[p[a]]+e[b]+1
-    if a!=p[p[a]]:
-        e[p[a]]=e[p[a]]+e[a]
-        e[a]=0
-    e[b]=0
-    #t[p[a]]+=t[b]
-    t[p[a]]=t[p[a]]+t[b]
-    if a!=p[p[a]]:
-        #t[p[a]]+=t[a]
-        t[p[a]]=t[p[a]]+t[a]
-        t[a]=0
-    t[b]=0
-#print 'e',e
-#print 't',t
-#print 'p',p
+    e[a]=e[a]+1
+    unite(a,b)
+
 p=set(p)
 ans=1
 for i in p:
