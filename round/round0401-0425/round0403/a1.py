@@ -1,16 +1,13 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-
-n=int(input())
+input()
 x=[int(i) for i in input().split()]
-chk=[0]*(n+1)
-ans=tmp=0
+d=set()
+ans=0
 for i in x:
-    if chk[i]==0:
-        chk[i]=1
-        tmp+=1
+    if i in d:
+        d.remove(i)
     else:
-        chk[i]=0
-        tmp-=1
-    ans=max(ans,tmp)
+        d.add(i)
+        ans=max(ans,len(d))
 print(ans)
