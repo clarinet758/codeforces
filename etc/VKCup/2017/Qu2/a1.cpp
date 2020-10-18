@@ -24,9 +24,6 @@ int main(){
     int mod=1000000007;
     int n,m,ans;
     //scanf("%d %d",&n,&m);
-    n=5;
-    per (i,n) {
-        printf("%d\n",i);
-    }
+    printf("%d\n",mod);
     return 0;
 }
