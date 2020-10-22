@@ -1,10 +1,9 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-d={'Cube':6,'Tetrahedron':4,'Octahedron':8,'Dodecahedron':12, 'Icosahedron':20}
+d={"Tetrahedron":4,"Cube":6,"Octahedron":8,"Dodecahedron":12,"Icosahedron":20}
+ans=0
 n=int(input())
-ans=chk=0
 for i in range(n):
-    s=input()
-    ans=ans+d[s]
+    ans+=d[input()]
 print(ans)

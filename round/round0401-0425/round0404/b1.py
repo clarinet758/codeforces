@@ -1,27 +1,17 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-nn,mm=[],[]
+
 n=int(input())
+p=[0,10**10]
+q=[0,10**10]
 for i in range(n):
     a,b=map(int,input().split())
-    if i==0:
-        nn.append((a,b))
-        nn.append((a,b))
-    elif b<nn[0][1]:
-        nn[0]=(a,b)
-    elif a>nn[1][0]:
-        nn[1]=(a,b)
-
+    p[0]=max(p[0],a)
+    p[1]=min(p[1],b)
 m=int(input())
 for i in range(m):
     a,b=map(int,input().split())
-    if i==0:
-        mm.append((a,b))
-        mm.append((a,b))
-    elif b<mm[0][1]:
-        mm[0]=(a,b)
-    elif a>mm[1][0]:
-        mm[1]=(a,b)
-ans=max(0,mm[1][0]-nn[0][1],nn[1][0]-mm[0][1])
-print(ans)
+    q[0]=max(q[0],a)
+    q[1]=min(q[1],b)
+print(max(0,q[0]-p[1],p[0]-q[1]))
