@@ -4,7 +4,6 @@ using namespace std;
 #define sc2(a,b)  scanf("%d %d",&a,&b)
 
 int main(){
-    int mod=1000000007;
     int a,b,ans=0;
     sc2(a,b);
     for(;;){
